@@ -138,6 +138,8 @@ public class OVRPlayerController : MonoBehaviour
     [SerializeField]
     World _inWorld;
 
+    public bool IsModifierInput { get; private set; }
+
     [SerializeField]
     GameObject _visualizeBlockPlacement;
 
@@ -231,7 +233,7 @@ public class OVRPlayerController : MonoBehaviour
     {
         if(Cursor.lockState == CursorLockMode.Locked)
         {
-            if (isModifierInput)
+            if (IsModifierInput)
             {
                 if (Input.GetMouseButton(0))
                 {
