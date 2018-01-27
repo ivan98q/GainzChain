@@ -26,7 +26,6 @@ public:
     uint256 hashMerkleRoot;
     uint32_t nTime;
     int64_t nBits;
-    uint32_t nNonce;
     std::vector<std::pair<std::vector<uint8_t>, uint32_t>> path;
 
     CBlockHeader()
@@ -43,7 +42,6 @@ public:
         READWRITE(hashMerkleRoot);
         READWRITE(nTime);
         READWRITE(nBits);
-        READWRITE(nNonce);
         READWRITE(path);
     }
 
@@ -54,7 +52,6 @@ public:
         hashMerkleRoot.SetNull();
         nTime = 0;
         nBits = 0;
-        nNonce = 0;
         path.clear();
     }
 
@@ -115,7 +112,6 @@ public:
         block.hashMerkleRoot = hashMerkleRoot;
         block.nTime          = nTime;
         block.nBits          = nBits;
-        block.nNonce         = nNonce;
         block.path           = path;
         return block;
     }
