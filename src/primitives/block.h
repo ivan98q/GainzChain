@@ -27,6 +27,7 @@ public:
     uint32_t nTime;
     uint32_t nBits;
     uint32_t nNonce;
+    std::vector<std::Pair(uint16_t, uint32_t)> path;
 
     CBlockHeader()
     {
@@ -43,6 +44,7 @@ public:
         READWRITE(nTime);
         READWRITE(nBits);
         READWRITE(nNonce);
+        READWRITE(path);
     }
 
     void SetNull()
@@ -53,6 +55,7 @@ public:
         nTime = 0;
         nBits = 0;
         nNonce = 0;
+        path.clear();
     }
 
     bool IsNull() const
@@ -113,6 +116,7 @@ public:
         block.nTime          = nTime;
         block.nBits          = nBits;
         block.nNonce         = nNonce;
+        block.path           = path;
         return block;
     }
 
