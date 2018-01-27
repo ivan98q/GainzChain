@@ -8,6 +8,7 @@
 #include <arith_uint256.h>
 #include <chain.h>
 #include <primitives/block.h>
+#include <random.h>
 #include <uint256.h>
 
 int64_t GetNextPathLength(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
@@ -134,5 +135,23 @@ bool CheckProofOfWork(std::vector<std::pair<std::vector<uint8_t>, uint32_t>> pat
 std::vector<std::vector<std::vector<bool>>> GenerateWorld(uint256 prevBlockHash)
 {
     std::vector<std::vector<std::vector<bool>>> world;
+
+    FastRandomContext rand(prevBlockHash);
+    for (unsigned int x = 0; x < world.size(); ++x) {
+        for (unsigned int y = 0; y < world[x].size(); ++y) {
+            for (unsigned int z = 0; z < world[x][y].size(); ++z) {
+                if (z < 4) {
+                    continue;
+                }
+                uint64_t res = rand.randrange(10);
+                if (res == 0) {
+                    world[x][y][z] = true;
+                } else {
+                    world[x][y][z] = false;
+                }
+            }
+        }
+    }
+
     return world;
 }
