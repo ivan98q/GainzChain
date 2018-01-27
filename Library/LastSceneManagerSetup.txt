@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/YounGen Tech/Voxel Tech/Scenes/Voxel Tech Scene - No Image Effects.unity
+  isLoaded: 1
+  isActive: 1
