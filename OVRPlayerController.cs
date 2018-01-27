@@ -229,13 +229,20 @@ public class OVRPlayerController : MonoBehaviour
     //voxel
     void UpdateInput()
     {
-        if (Input.GetMouseButton(0))
+        if(Cursor.lockState == CursorLockMode.Locked)
         {
-            if (blockWasHit)
+            if (isModifierInput)
             {
-                InWorld.SetBlock(lastBlockHit.position, Block.Air);
+                if (Input.GetMouseButton(0))
+                {
+                    if (blockWasHit)
+                    {
+                        InWorld.SetBlock(lastBlockHit.position, Block.Air);
+                    }
+                }
             }
         }
+        
     }
 
     public World InWorld
