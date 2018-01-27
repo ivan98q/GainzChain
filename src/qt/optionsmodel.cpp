@@ -3,12 +3,12 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/bitcoin-config.h>
+#include <config/gainzcoin-config.h>
 #endif
 
 #include <qt/optionsmodel.h>
 
-#include <qt/bitcoinunits.h>
+#include <qt/gainzcoinunits.h>
 #include <qt/guiutil.h>
 
 #include <init.h>
@@ -71,7 +71,7 @@ void OptionsModel::Init(bool resetSettings)
 
     // Display
     if (!settings.contains("nDisplayUnit"))
-        settings.setValue("nDisplayUnit", BitcoinUnits::BTC);
+        settings.setValue("nDisplayUnit", GainzCoinUnits::BTC);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
 
     if (!settings.contains("strThirdPartyTxUrls"))

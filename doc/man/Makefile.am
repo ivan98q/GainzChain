@@ -1,13 +1,13 @@
 dist_man1_MANS=
 
-if BUILD_BITCOIND
-  dist_man1_MANS+=bitcoind.1
+if BUILD_GAINZCOIND
+  dist_man1_MANS+=gainzcoind.1
 endif
 
 if ENABLE_QT
-  dist_man1_MANS+=bitcoin-qt.1
+  dist_man1_MANS+=gainzcoin-qt.1
 endif
 
-if BUILD_BITCOIN_UTILS
-  dist_man1_MANS+=bitcoin-cli.1 bitcoin-tx.1
+if BUILD_GAINZCOIN_UTILS
+  dist_man1_MANS+=gainzcoin-cli.1 gainzcoin-tx.1
 endif

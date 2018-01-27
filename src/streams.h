@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_STREAMS_H
-#define BITCOIN_STREAMS_H
+#ifndef GAINZCOIN_STREAMS_H
+#define GAINZCOIN_STREAMS_H
 
 #include <support/allocators/zeroafterfree.h>
 #include <serialize.h>
@@ -704,4 +704,4 @@ public:
     }
 };
 
-#endif // BITCOIN_STREAMS_H
+#endif // GAINZCOIN_STREAMS_H
