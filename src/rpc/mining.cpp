@@ -356,6 +356,14 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
             "  \"curtime\" : ttt,                  (numeric) current timestamp in seconds since epoch (Jan 1 1970 GMT)\n"
             "  \"bits\" : \"xxxxxxxx\",              (string) compressed target of next block\n"
             "  \"height\" : n                      (numeric) The height of the next block\n"
+            "  \"world\" : [                        (array) 3D array which specifies which tile in a world is the goal tile\n"
+            "    [\n"
+            "      [\n"
+            "        \"value\"                     (boolean) Whether this tile is a goal or not\n"
+            "        ,...\n"
+            "      ]\n"
+            "    ]\n"
+            "  ]\n"
             "}\n"
 
             "\nExamples:\n"
@@ -669,6 +677,21 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
     if (!pblocktemplate->vchCoinbaseCommitment.empty() && fSupportsSegwit) {
         result.push_back(Pair("default_witness_commitment", HexStr(pblocktemplate->vchCoinbaseCommitment.begin(), pblocktemplate->vchCoinbaseCommitment.end())));
     }
+
+    UniValue dimX(UniValue::VARR);
+    auto world = GenerateWorld(pblock->hashPrevBlock);
+    for (auto x : world) {
+        UniValue dimY(UniValue::VARR);
+        for (auto y : x) {
+            UniValue dimZ(UniValue::VARR);
+            for (auto z : y) {
+                dimZ.push_back(z);
+            }
+            dimY.push_back(dimZ);
+        }
+        dimX.push_back(dimY);
+    }
+    result.pushKV("world", dimX);
 
     return result;
 }
