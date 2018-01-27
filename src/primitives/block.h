@@ -25,9 +25,9 @@ public:
     uint256 hashPrevBlock;
     uint256 hashMerkleRoot;
     uint32_t nTime;
-    uint32_t nBits;
+    int64_t nBits;
     uint32_t nNonce;
-    std::vector<std::Pair(uint16_t, uint32_t)> path;
+    std::vector<std::pair<std::vector<uint8_t>, uint32_t>> path;
 
     CBlockHeader()
     {

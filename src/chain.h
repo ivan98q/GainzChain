@@ -210,8 +210,9 @@ public:
     int32_t nVersion;
     uint256 hashMerkleRoot;
     uint32_t nTime;
-    uint32_t nBits;
+    int64_t nBits;
     uint32_t nNonce;
+    std::vector<std::pair<std::vector<uint8_t>, uint32_t>> path;
 
     //! (memory only) Sequential id assigned to distinguish order in which blocks are received.
     int32_t nSequenceId;
@@ -286,6 +287,7 @@ public:
         block.nTime          = nTime;
         block.nBits          = nBits;
         block.nNonce         = nNonce;
+        block.path           = path;
         return block;
     }
 
