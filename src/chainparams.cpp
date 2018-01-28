@@ -138,11 +138,11 @@ public:
         nDefaultPort = 10000;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1231006505, 4, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1517110135, 4, 1, 69 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         fprintf(stderr,"Genisis Block: %s Merkle Root: %s Consensus Hash: %s \n",genesis.GetHash().ToString().c_str(), genesis.hashMerkleRoot.ToString().c_str(), consensus.hashGenesisBlock.ToString().c_str());
-        assert(consensus.hashGenesisBlock == uint256S("0xfa20d941b7e05a4bd20e9718af89aee90561e7a612fd867afa13ea37830d519a"));
-        assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+        assert(consensus.hashGenesisBlock == uint256S("0x57f04893dfce427903a449e1af06d06279b161bd8671ef3c811fc4f5dd6fc71b"));
+        assert(genesis.hashMerkleRoot == uint256S("0x7999982fa310b98334c3174381b3025a96c91579a8c08d49c9dbfda760435881"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
@@ -222,11 +222,11 @@ public:
         nDefaultPort = 18333;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1296688602, 4, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1517110130, 4, 1, 69 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         fprintf(stderr,"Genisis Block: %s Merkle Root: %s Consensus Hash: %s \n",genesis.GetHash().ToString().c_str(), genesis.hashMerkleRoot.ToString().c_str(), consensus.hashGenesisBlock.ToString().c_str());
-        assert(consensus.hashGenesisBlock == uint256S("0x7cd7ccdca1d37de0ab18750f486d3e135d77ce6d740cd382792d80232fadd828"));
-        assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+        assert(consensus.hashGenesisBlock == uint256S("0x57f04893dfce427903a449e1af06d06279b161bd8671ef3c811fc4f5dd6fc71b"));
+        assert(genesis.hashMerkleRoot == uint256S("0x7999982fa310b98334c3174381b3025a96c91579a8c08d49c9dbfda760435881"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
