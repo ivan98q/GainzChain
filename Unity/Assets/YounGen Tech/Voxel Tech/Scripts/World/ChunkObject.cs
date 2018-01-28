@@ -104,6 +104,11 @@ namespace YounGenTech.VoxelTech {
             return ChunkData.GetBlock(index);
         }
 
+        public void setBlockGold(VectorI3 index)
+        {
+            ChunkData.SetBlock(index, new Block(3));
+        }
+
         public VectorI3 GetBlockLocalPosition(int index) {
             return ChunkData.GetBlockLocalPosition(index);
         }

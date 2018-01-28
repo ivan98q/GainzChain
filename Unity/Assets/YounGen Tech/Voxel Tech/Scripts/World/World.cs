@@ -12,10 +12,10 @@ namespace YounGenTech.VoxelTech {
         WorldThreading _worldThreadingComponent;
 
         [SerializeField]
-        VectorI3 _defaultWorldSize = new VectorI3(3, 3, 3);
+        VectorI3 _defaultWorldSize = new VectorI3(1, 1, 1);
 
         [SerializeField]
-        ChunkSpawnStyle _chunkSpawning = ChunkSpawnStyle.Square;
+        ChunkSpawnStyle _chunkSpawning = ChunkSpawnStyle.Circle; // ChunkSpawnStyle.Square;
 
         [SerializeField]
         VectorI3 _defaultChunkSize = new VectorI3(8, 8, 8);
@@ -511,8 +511,8 @@ namespace YounGenTech.VoxelTech {
                         VectorI3 position = i.FlatTo3DIndex(DefaultWorldSize) * DefaultChunkSize;
                         VectorI3 realPosition = VectorI3.GridFloor(spawnPosition + (DefaultChunkSize * .5f) + position - (DefaultChunkSize * DefaultWorldSize * .5f), DefaultChunkSize);
 
-                        if(!_activeChunks.ContainsKey(realPosition))
-                            _activeChunks[realPosition] = SpawnChunk(realPosition);
+                        //if(!_activeChunks.ContainsKey(realPosition))
+                            //_activeChunks[realPosition] = SpawnChunk(realPosition);
                     }
 
                     break;
@@ -568,6 +568,12 @@ namespace YounGenTech.VoxelTech {
                                 if(finalPosition.sqrMagnitude <= doubleRadius)
                                     _activeChunks[realPosition] = SpawnChunk(realPosition);
                         }
+                
+                        break;
+                    }
+
+                case ChunkSpawnStyle.None:
+                    {
 
                         break;
                     }
@@ -687,6 +693,7 @@ namespace YounGenTech.VoxelTech {
         Square,
         Circle,
         Cube,
-        Sphere
+        Sphere,
+        None
     }
 }

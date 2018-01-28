@@ -360,8 +360,12 @@ namespace YounGenTech.VoxelTech {
                 if(IsModifierInput) {
                     if(Input.GetMouseButton(0))
                         //if(Input.GetButton("Fire1"))
-                        if(blockWasHit)
+                        if (blockWasHit)
+                        {
                             InWorld.SetBlock(lastBlockHit.position, Block.Air);
+
+                        }
+                            
 
                     if(Input.GetMouseButtonDown(1))
                         //if(Input.GetButtonDown("Fire2"))

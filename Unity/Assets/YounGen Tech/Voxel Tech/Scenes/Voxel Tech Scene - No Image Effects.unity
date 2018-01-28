@@ -1644,9 +1644,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _worldThreadingComponent: {fileID: 1390564182}
   _defaultWorldSize:
-    x: 20
+    x: 1
     y: 1
-    z: 20
+    z: 1
   _chunkSpawning: 3
   _defaultChunkSize:
     x: 16

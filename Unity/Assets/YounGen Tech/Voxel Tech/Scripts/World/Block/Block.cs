@@ -7,6 +7,7 @@ namespace YounGenTech.VoxelTech {
         public static Block Empty { get { return new Block(0); } }
         public static Block Air { get { return new Block(1); } }
         public static Block Solid { get { return new Block(2); } }
+        public static Block Gold { get { return new Block(3);  } }
 
         [SerializeField]
         byte _id;
