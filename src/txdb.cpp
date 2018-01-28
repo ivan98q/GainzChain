@@ -17,6 +17,7 @@
 #include <stdint.h>
 
 #include <boost/thread.hpp>
+#include<world.h>
 
 static const char DB_COIN = 'C';
 static const char DB_COINS = 'c';

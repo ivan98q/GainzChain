@@ -16,9 +16,9 @@ class uint256;
 
 int64_t GetNextPathLength(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params);
 int64_t CalculateNextPathLengthRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params);
-std::vector<std::vector<std::vector<bool>>> GenerateWorld(uint256 prevBlockHash);
+
 
 /** Check whether a block hash satisfies the proof-of-work requirement specified by nBits */
-bool CheckProofOfWork(std::vector<std::pair<std::vector<uint8_t>, uint32_t>> path, int64_t target_path_length, std::vector<std::vector<std::vector<bool>>> world, const Consensus::Params& params);
+bool CheckProofOfWork(std::vector<std::pair<std::vector<uint8_t>, uint32_t>> path, int64_t target_path_length, std::vector<std::vector<std::vector<int>>> world, const Consensus::Params& params);
 
 #endif // GAINZCOIN_POW_H

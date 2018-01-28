@@ -45,7 +45,7 @@
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/join.hpp>
 #include <boost/thread.hpp>
-
+#include<world.h>
 #if defined(NDEBUG)
 # error "GainzCoin cannot be compiled without assertions."
 #endif

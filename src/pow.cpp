@@ -72,7 +72,7 @@ int64_t CalculateNextPathLengthRequired(const CBlockIndex* pindexLast, int64_t n
     return bnNew;
 }
 
-bool CheckProofOfWork(std::vector<std::pair<std::vector<uint8_t>, uint32_t>> path, int64_t target_path_length, std::vector<std::vector<std::vector<bool>>> world, const Consensus::Params& params)
+bool CheckProofOfWork(std::vector<std::pair<std::vector<uint8_t>, uint32_t>> path, int64_t target_path_length, std::vector<std::vector<std::vector<int>>> world, const Consensus::Params& params)
 {
     int64_t bnTarget = target_path_length;
 
@@ -81,7 +81,7 @@ bool CheckProofOfWork(std::vector<std::pair<std::vector<uint8_t>, uint32_t>> pat
         return false;
 
     // Check that the path length matches the claimed length
-    if (path.size() > target_path_length)
+    if (path.size() < target_path_length)
         return false;
 
     // Follow the path
@@ -105,12 +105,10 @@ bool CheckProofOfWork(std::vector<std::pair<std::vector<uint8_t>, uint32_t>> pat
         }
 
         // Checks to make sure we didn't make some weird telport move / diagonal move.
-        if (last_pos[0] + 1 != coordinates[0] || last_pos[0] -1 != coordinates[0] ||
-          last_pos[1] + 1 != coordinates[1] || last_pos[1] - 1 != coordinates[1] ||
-        last_pos[2] + 1 != coordinates[2] || last_pos[2] - 1 != coordinates[2]) {
+        uint8_t total_difference = (coordinates[0] - last_pos[0]) + (coordinates[1] - last_pos[1]) + (coordinates[2] - last_pos[2]);
+        if ((total_difference != 1)  == (total_difference != -1)){
           return false;
         }
-
         /*
         * Checks if it takes a second or more for the next move operation to take place.
         * This may have to change! Maybe just make sure that the timestamp is always positive.
@@ -126,32 +124,8 @@ bool CheckProofOfWork(std::vector<std::pair<std::vector<uint8_t>, uint32_t>> pat
     }
 
     // This is to make sure we actually found a "gold tile"
-    if(world.at(last_pos[0]).at(last_pos[1]).at(last_pos[2]) != true)
+    if(world.at(last_pos[0]).at(last_pos[1]).at(last_pos[2]) != 1)
       return false;
 
     return true;
-}
-
-std::vector<std::vector<std::vector<bool>>> GenerateWorld(uint256 prevBlockHash)
-{
-    std::vector<std::vector<std::vector<bool>>> world;
-
-    FastRandomContext rand(prevBlockHash);
-    for (unsigned int x = 0; x < world.size(); ++x) {
-        for (unsigned int y = 0; y < world[x].size(); ++y) {
-            for (unsigned int z = 0; z < world[x][y].size(); ++z) {
-                if (z < 4) {
-                    continue;
-                }
-                uint64_t res = rand.randrange(10);
-                if (res == 0) {
-                    world[x][y][z] = true;
-                } else {
-                    world[x][y][z] = false;
-                }
-            }
-        }
-    }
-
-    return world;
 }

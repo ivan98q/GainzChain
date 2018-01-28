@@ -14,6 +14,8 @@
 
 #include <chainparamsseeds.h>
 
+#include <world.h>
+
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     CMutableTransaction txNew;
@@ -31,6 +33,20 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
     genesis.vtx.push_back(MakeTransactionRef(std::move(txNew)));
     genesis.hashPrevBlock.SetNull();
     genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
+
+
+    // Gainzcoin additions
+    std::vector<std::vector<std::vector<int>>> world = GenerateWorld(uint256());
+ /*
+ * [7,7,1] is our spawn point. [7,9,3] is where we want to be.
+ */
+    // This is the path to the genesis tile.
+    genesis.path.push_back(std::make_pair(std::vector<uint8_t>{7,1,7},0));
+    genesis.path.push_back(std::make_pair(std::vector<uint8_t>{7,1,8},1));
+    genesis.path.push_back(std::make_pair(std::vector<uint8_t>{7,1,9},2));
+    genesis.path.push_back(std::make_pair(std::vector<uint8_t>{7,2,9},3));
+    genesis.path.push_back(std::make_pair(std::vector<uint8_t>{7,3,9},4));
+
     return genesis;
 }
 
@@ -71,7 +87,7 @@ public:
         consensus.BIP65Height = 0; // Always active
         consensus.BIP66Height = 0; // Always active
         consensus.powMaxLimit = 4096;
-        consensus.powMinLimit = 5;
+        consensus.powMinLimit = 4;
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
         consensus.nPowTargetSpacing = 3 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -110,9 +126,9 @@ public:
         nDefaultPort = 8333;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1231006505, 0x1d00ffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1231006505, 4, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
+        assert(consensus.hashGenesisBlock == uint256S("0xfa20d941b7e05a4bd20e9718af89aee90561e7a612fd867afa13ea37830d519a"));
         assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
         // Note that of those which support the service bits prefix, most only support a subset of

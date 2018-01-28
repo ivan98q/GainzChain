@@ -170,6 +170,7 @@ GAINZCOIN_CORE_H = \
   wallet/walletdb.h \
   wallet/walletutil.h \
   warnings.h \
+  world.h \
   zmq/zmqabstractnotifier.h \
   zmq/zmqconfig.h\
   zmq/zmqnotificationinterface.h \
@@ -334,6 +335,7 @@ libgainzcoin_common_a_SOURCES = \
   script/sign.cpp \
   script/standard.cpp \
   warnings.cpp \
+  world.cpp \
   $(GAINZCOIN_CORE_H)
 
 # util: shared between all executables.
