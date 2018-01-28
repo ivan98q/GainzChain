@@ -37,17 +37,17 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 
     // Gainzcoin additions
     std::vector<std::vector<std::vector<int>>> world = GenerateWorld(uint256());
-    printf("----------------------------------------------------------\n");
-    for (unsigned int x = 0; x < world.size(); ++x) {
-        for (unsigned int y = 0; y < world[x].size(); ++y) {
-            for (unsigned int z = 0; z < world[x][y].size(); ++z) {
-              fprintf(stderr, "%d ", world[x][y][z]);
-            }
-            printf("\n");
-          }
-          printf("\n\n\n");
-        }
-        printf("----------------------------------------------------------\n");
+    // printf("----------------------------------------------------------\n");
+    // for (unsigned int x = 0; x < world.size(); ++x) {
+    //     for (unsigned int y = 0; y < world[x].size(); ++y) {
+    //         for (unsigned int z = 0; z < world[x][y].size(); ++z) {
+    //           fprintf(stderr, "%d ", world[x][y][z]);
+    //         }
+    //         printf("\n");
+    //       }
+    //       printf("\n\n\n");
+    //     }
+    //     printf("----------------------------------------------------------\n");
  /*
  * [7,7,1] is our spawn point. [7,9,3] is where we want to be.
  */
