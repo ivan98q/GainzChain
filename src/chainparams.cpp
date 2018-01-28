@@ -37,6 +37,17 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 
     // Gainzcoin additions
     std::vector<std::vector<std::vector<int>>> world = GenerateWorld(uint256());
+    printf("----------------------------------------------------------\n");
+    for (unsigned int x = 0; x < world.size(); ++x) {
+        for (unsigned int y = 0; y < world[x].size(); ++y) {
+            for (unsigned int z = 0; z < world[x][y].size(); ++z) {
+              fprintf(stderr, "%d ", world[x][y][z]);
+            }
+            printf("\n");
+          }
+          printf("\n\n\n");
+        }
+        printf("----------------------------------------------------------\n");
  /*
  * [7,7,1] is our spawn point. [7,9,3] is where we want to be.
  */
@@ -50,7 +61,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
     return genesis;
 }
 
-/**
+/**// Peter Todd, only supports x1, x5, x9, and xd
  * Build the genesis block. Note that the output of its generation
  * transaction cannot be spent since it did not originally exist in the
  * database.
@@ -61,6 +72,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  *     CTxOut(nValue=50.00000000, scriptPubKey=0x5F1DF16B2B704C8A578D0B)
  *   vMerkleTree: 4a5e1e
  */
+
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     const char* pszTimestamp = "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks";
@@ -119,15 +131,16 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xf9;
-        pchMessageStart[1] = 0xbe;
-        pchMessageStart[2] = 0xb4;
-        pchMessageStart[3] = 0xd9;
-        nDefaultPort = 8333;
+        pchMessageStart[0] = 0x6;
+        pchMessageStart[1] = 0x9;
+        pchMessageStart[2] = 0x6;
+        pchMessageStart[3] = 0x9;
+        nDefaultPort = 10000;
         nPruneAfterHeight = 100000;
 
         genesis = CreateGenesisBlock(1231006505, 4, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
+        fprintf(stderr,"Genisis Block: %s Merkle Root: %s Consensus Hash: %s \n",genesis.GetHash().ToString().c_str(), genesis.hashMerkleRoot.ToString().c_str(), consensus.hashGenesisBlock.ToString().c_str());
         assert(consensus.hashGenesisBlock == uint256S("0xfa20d941b7e05a4bd20e9718af89aee90561e7a612fd867afa13ea37830d519a"));
         assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
@@ -136,12 +149,7 @@ public:
         // This is fine at runtime as we'll fall back to using them as a oneshot if they dont support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        vSeeds.emplace_back("seed.gainzcoin.sipa.be"); // Pieter Wuille, only supports x1, x5, x9, and xd
-        vSeeds.emplace_back("dnsseed.bluematt.me"); // Matt Corallo, only supports x9
-        vSeeds.emplace_back("dnsseed.gainzcoin.dashjr.org"); // Luke Dashjr
-        vSeeds.emplace_back("seed.gainzcoinstats.com"); // Christian Decker, supports x1 - xf
-        vSeeds.emplace_back("seed.gainzcoin.jonasschnelli.ch"); // Jonas Schnelli, only supports x1, x5, x9, and xd
-        vSeeds.emplace_back("seed.btc.petertodd.org"); // Peter Todd, only supports x1, x5, x9, and xd
+        vseeds.clear();
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
