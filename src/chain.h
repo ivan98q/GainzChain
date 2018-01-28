@@ -254,6 +254,7 @@ public:
         hashMerkleRoot = block.hashMerkleRoot;
         nTime          = block.nTime;
         nBits          = block.nBits;
+        path           = block.path;
     }
 
     CDiskBlockPos GetBlockPos() const {
@@ -320,10 +321,10 @@ public:
 
     std::string ToString() const
     {
-        return strprintf("CBlockIndex(pprev=%p, nHeight=%d, merkle=%s, hashBlock=%s)",
+        return strprintf("CBlockIndex(pprev=%p, nHeight=%d, merkle=%s, hashBlock=%s, pathlen=%ld)",
             pprev, nHeight,
             hashMerkleRoot.ToString(),
-            GetBlockHash().ToString());
+            GetBlockHash().ToString(), path.size());
     }
 
     //! Check whether this block index entry is valid up to the passed validity level.
@@ -413,6 +414,7 @@ public:
         block.hashMerkleRoot  = hashMerkleRoot;
         block.nTime           = nTime;
         block.nBits           = nBits;
+        block.path            = path;
         return block.GetHash();
     }
 

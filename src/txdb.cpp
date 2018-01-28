@@ -286,6 +286,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts(const Consensus::Params& consensusParams, 
                 pindexNew->nBits          = diskindex.nBits;
                 pindexNew->nStatus        = diskindex.nStatus;
                 pindexNew->nTx            = diskindex.nTx;
+                pindexNew->path           = diskindex.path;
 
                 if (!CheckProofOfWork(pindexNew->path, pindexNew->nBits, GenerateWorld(pindexNew->GetBlockHeader().hashPrevBlock), consensusParams))
                     return error("%s: CheckProofOfWork failed: %s", __func__, pindexNew->ToString());
